@@ -10,8 +10,8 @@ body {
     justify-content: center;
     align-items: center;
     text-align: center;
-    width: 550px;
-    height: 600px;
+    width: 450px;
+    height: 700px;
     background-color: rgb(219, 219, 219);
     margin-top: 20px;
     border-radius: 5%;
@@ -21,14 +21,22 @@ body {
 }
 
 .display {
-    width: 450px;
+    width: 380px;
     height: 80px;
     background-color: rgba(255, 255, 255, 0.918);
     margin-top: 10px;
     opacity: 0.5;
+    padding: 3px;
+    padding-left: 10px;
     border: color black;
     border-width: thin;
     border-style: solid;
+    font-size: 50px;
+    font-weight: 700;
+    text-align: left;
+    line-height: 80px;
+    vertical-align: middle;
+    
 }
 
 .secondrow {
@@ -70,11 +78,17 @@ h3 {
     font-family: "Times New Roman", Times, serif;
 }
 
+.modify {
+    display: flex;
+    justify-content: space-between;
+    gap: 15px;
+}
+
 .buttons {
     display: flex;
     flex-wrap: wrap;
     margin-top: 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
 }
 
 .numbers {
@@ -88,11 +102,9 @@ h3 {
 
 .operations {
     display: flex;
-    flex-wrap: wrap;
-    justify-content:flex-start;
+    flex-direction: column;
     gap: 10px;
-    width: 230px;
-    height: 150px;
+   
 }
 
 button {
@@ -108,7 +120,9 @@ button {
     vertical-align: middle;
 }
 
-.clear {
+.clear,
+.delete {
     width: 150px;
 }
 
+.clear {}
