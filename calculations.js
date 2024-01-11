@@ -140,7 +140,15 @@ function display(arg){
             }else if(operator != "" && secondNumber.indexOf(".") == -1){
                 displayLine.textContent += '.';
                 secondNumber += ".";
+                break;
             }    
+        case "=":
+            if(firstNumber != "" && secondNumber != ""){
+                calculate();
+                let result = resultLine.textContent;
+                displayClear();
+                resultLine.textContent = result;
+            }      
 }};
 
 
@@ -181,7 +189,7 @@ buttonDivide.addEventListener("click", function() {display("/")});
 const buttonSub = document.querySelector(".button-sub")
 buttonSub.addEventListener("click", function() {display("-")});
 const buttonEq = document.querySelector(".buttoneq")
-buttonEq.addEventListener("click", function() {calculate()});
+buttonEq.addEventListener("click", function() {display("=")});
 
 
 // Operations for display modification
