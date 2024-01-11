@@ -151,3 +151,7 @@ span{
     white-space: nowrap;
     overflow: hidden;
 }
+
+h3 {
+    font-size: 25px;
+}
