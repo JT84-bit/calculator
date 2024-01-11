@@ -136,5 +136,18 @@ button {
 }
 
 .displayLine2{
+    display: flex;
+    justify-content: flex-end;
+    white-space: nowrap;
+    overflow: hidden;
     text-align: right;
+}
+
+span{
+    font-size: 30px;
+    width: 380px;
+    display: flex;
+    justify-content: flex-end;
+    white-space: nowrap;
+    overflow: hidden;
 }

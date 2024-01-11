@@ -1,99 +1,146 @@
-
+//Functions for calculations
 multiply = (first, second) => first * second;
 add = (first, second) => first + second;
 substract = (first, second) => first + second;
 divide = (first, second) => first / second;
 
+//Keeps record for current variables
 let operator = "";
 let oldOperator = "";
 let firstNumber = "";
 let secondNumber = "";
 
+//Backspace for display
 displayDel = () => {
     let text = displayLine.textContent;
-    text = text.slice(0, -1);
+    if(text[-1] === " "){
+        text = text.slice(0, -3);
+    }else if(operator === ""){
+        text = text.slice(0, -1);  
+        firstNumber = firstNumber.slice(0, -1)
+    }else{
+        text = text.slice(0, -1);  
+        secondNumber = secondNumber.slice(0, -1)
+    }
     displayLine.textContent = text;
 };
 
+//Clears screen
 displayClear = () => {
     displayLine.textContent = "";
     resultLine.textContent = "";
     operator = "";
     firstNumber = "";
     secondNumber = "";
+    oldOperator = "";
 }
 
+//Calculate current numbers 
 calculate = () => {
-    first = parseInt(firstNumber);
-    second = parseInt(secondNumber);
+    first = firstNumber * 1;
+    second = secondNumber * 1;
     switch(operator){
         case "+":
             result = add(first, second);
-            result = result.toString();
-            resultLine.textContent = result;
-            firstNumber = result.toString();
-            operator = "";
             oldOperator = "+" 
             break;
         case "-":
             result = substract(first, second);
-            result = result.toString();
-            resultLine.textContent = result;
-            firstNumber = result.toString();
-            operator = "";
             oldOperator = "-"
             break;
         case "*":
             result = multiply(first, second);
-            result = result.toString();
-            resultLine.textContent = result;
-            firstNumber = result.toString();
-            operator = "";
             oldOperator = "*"
             break;
         case "/":
-            result = divide(first, second);
-            result = result.toString();
-            resultLine.textContent = result;
-            firstNumber = result.toString();
-            operator = "";
-            oldOperator = "/"
+            if(firstNumber === "0" || secondNumber === "0"){
+                displayClear();
+                displayLine.textContent = "ERROR"
+            }else{
+                result = divide(first, second);
+                oldOperator = "/"
+            }
     }
+    if(result % 1 === 0){
+        result = result.toString();
+    }else{
+        result = result.toFixed(2);
+    }
+    
+    displayLine.textContent += " = " + result;
+    resultLine.textContent = result;
+    firstNumber = result;
+    secondNumber = "";
+    operator = "";
 }
 
-
+//Display lines
 const displayLine = document.querySelector(".displayLine1")
 const resultLine = document.querySelector(".displayLine2")
 
-
+//Handles display
 function display(arg){
     let text = displayLine.textContent;
     if(!isNaN(arg)){
-        if(firstNumber.length < 10 && operator === ""){
+        if(firstNumber.length < 10 && operator === "" && oldOperator === ""){
             displayLine.textContent += arg;
             firstNumber += arg;
         }else if(operator != "" && secondNumber.length < 10){
             displayLine.textContent += arg;
             secondNumber += arg;
-        }};
+        }
+        return;
+    };
       
     switch(arg){
         case "+":
-            if(operator === ""){
+            if(operator === "" && firstNumber != ""){
                 displayLine.textContent += " + ";
-                operator = "+";}      
+                operator = "+";
+            }else if(operator != ""){
+                calculate();
+                displayLine.textContent += " + ";
+                operator = "+";
+            }     
+            break;   
         case "-":
-            if(operator === ""){
+            if(operator === "" && firstNumber != ""){
                 displayLine.textContent += " - ";
-                operator = "-";}     
+                operator = "-";
+            }else if(operator != ""){
+                calculate();
+                displayLine.textContent += " - ";
+                operator = "-";
+            }  
+            break; 
         case "*":
-            if(operator === ""){
+            if(operator === "" && firstNumber != ""){
                 displayLine.innerHTML += ' &times; ';
-                operator = "*";}    
+                operator = "*";
+            }else if(operator != ""){
+                calculate();
+                displayLine.innerHTML += ' &times; ';
+                operator = "*";
+            }    
+            break;  
         case "/":
-            if(operator === ""){
+            if(operator === "" && firstNumber != ""){
                 displayLine.innerHTML += ' &divide; '
-                operator = "/";}      
+                operator = "/";
+            }else if(operator != ""){
+                calculate();
+                displayLine.innerHTML += ' &divide; '
+                operator = "/";
+            }       
+            break; 
+        case ".":
+            if(firstNumber != "" && operator == "" && firstNumber.indexOf(".") == -1){
+                firstNumber += ".";
+                displayLine.textContent += '.';
+            }else if(operator != "" && secondNumber.indexOf(".") == -1){
+                displayLine.textContent += '.';
+                secondNumber += ".";
+            }    
 }};
 
 
@@ -119,6 +166,9 @@ const button9 = document.querySelector(".button9")
 button9.addEventListener("click", function() {display("9")});
 const button0 = document.querySelector(".button0")
 button0.addEventListener("click", function() {display("0")});
+
+const buttondot = document.querySelector(".buttondot")
+buttondot.addEventListener("click", function() {display(".")});
 
 
 // Operation buttons
