@@ -22,7 +22,7 @@ body {
 
 .display {
     width: 380px;
-    height: 80px;
+    height: 120px;
     background-color: rgba(255, 255, 255, 0.918);
     margin-top: 10px;
     opacity: 0.5;
@@ -31,10 +31,10 @@ body {
     border: color black;
     border-width: thin;
     border-style: solid;
-    font-size: 50px;
+    font-size: 40px;
     font-weight: 700;
     text-align: left;
-    line-height: 80px;
+    line-height: 54px;
     vertical-align: middle;
     
 }
@@ -118,6 +118,8 @@ button {
     border-radius: 10%;
     text-align: center;
     vertical-align: middle;
+    background-color: black;
+    color: white;
 }
 
 .clear,
@@ -125,4 +127,14 @@ button {
     width: 150px;
 }
 
-.clear {}
+.clear {
+    color: red;
+}
+
+.operations button{
+    color: green;
+}
+
+.displayLine2{
+    text-align: right;
+}
