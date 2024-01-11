@@ -1,7 +1,7 @@
 //Functions for calculations
 multiply = (first, second) => first * second;
 add = (first, second) => first + second;
-substract = (first, second) => first + second;
+substract = (first, second) => first - second;
 divide = (first, second) => first / second;
 
 //Keeps record for current variables
