@@ -13,8 +13,9 @@ let secondNumber = "";
 //Backspace for display
 displayDel = () => {
     let text = displayLine.textContent;
-    if(text[-1] === " "){
+    if(secondNumber.length === 0 && operator != ""){
         text = text.slice(0, -3);
+        operator = "";
     }else if(operator === ""){
         text = text.slice(0, -1);  
         firstNumber = firstNumber.slice(0, -1)
